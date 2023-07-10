@@ -243,7 +243,9 @@ C16_model_obj.ub(find(C16_model_obj.c)) = 1000;
 %% identify common reactions between all models
 
 Common_all_models = readtable('common_rxns_c16_new.csv');
-resultCell_common = FEA(C1_model, Common_all_models.('Reaction_num1'), 'subSystems');
+
+common_rxns_num = find(ismember(model.rxns,Common_all_models.C1));
+resultCell_common = FEA(model, common_rxns_num, 'subSystems');
 
 %%  identify common reactions between all SNP  models
 
